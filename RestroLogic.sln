@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestroLogic.Domain", "RestroLogic.Domain\RestroLogic.Domain.csproj", "{D32A5C20-1F5D-431A-ABA3-E11A4024904F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestroLogic.Application", "RestroLogic.Application\RestroLogic.Application.csproj", "{2FD47C75-FB5E-4B34-95B5-903B71DCA3AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestroLogic.Infrastructure", "RestroLogic.Infrastructure\RestroLogic.Infrastructure.csproj", "{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestroLogic.WebApi", "RestroLogic.WebApi\RestroLogic.WebApi.csproj", "{B93B7364-DC75-417A-B780-13D7D60F98FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D32A5C20-1F5D-431A-ABA3-E11A4024904F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32A5C20-1F5D-431A-ABA3-E11A4024904F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32A5C20-1F5D-431A-ABA3-E11A4024904F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32A5C20-1F5D-431A-ABA3-E11A4024904F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD47C75-FB5E-4B34-95B5-903B71DCA3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD47C75-FB5E-4B34-95B5-903B71DCA3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD47C75-FB5E-4B34-95B5-903B71DCA3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD47C75-FB5E-4B34-95B5-903B71DCA3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE24D36A-3F96-45E5-8319-2E4CDC5D8ADE}
+	EndGlobalSection
+EndGlobal
