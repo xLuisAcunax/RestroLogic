@@ -4,9 +4,11 @@ namespace RestroLogic.Domain.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<Order> GetByIdAsync(Guid id);
-        Task AddAsync(Order order);
-        Task UpdateAsync(Order order);
-        Task DeleteAsync(Order order);
+        Task<IEnumerable<Order>> GetAllAsync();
+        Task<IEnumerable<Order>> GetByCustomerIdAsync(Guid customerId, CancellationToken cancellationToken = default);
+        Task<Order> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task AddAsync(Order order, CancellationToken cancellationToken = default);
+        Task UpdateAsync(Order order, CancellationToken cancellationToken = default);
+        Task DeleteAsync(Order order, CancellationToken cancellationToken = default);
     }
 }
