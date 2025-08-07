@@ -13,10 +13,15 @@ namespace RestroLogic.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>();
-            modelBuilder.Entity<Order>().OwnsMany(o => o.Items, items =>
+            modelBuilder.Entity<Order>(); 
+            modelBuilder.Entity<OrderItem>();
+
+            modelBuilder.Entity<Customer>(customer =>
             {
-                modelBuilder.Entity<OrderItem>();
+                customer.OwnsOne(c => c.Email, email =>
+                {
+                    email.Property(e => e.Value);
+                });
             });
         }
     }
