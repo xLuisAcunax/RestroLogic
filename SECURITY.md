@@ -1,32 +1,35 @@
-# Security Policy
+# Política de Seguridad
 
-## Supported Versions
+## Versiones Soportadas
 
-| Version    | Supported          |
-| ---------- | ----------------- |
-| In development | :white_check_mark: |
-| 1.0.0 (future) | :white_check_mark: |
-| < 1.0.0   | :x:
+Actualmente, RestroLogic se encuentra en fase de desarrollo.  
+Las versiones oficiales serán anunciadas y listadas aquí junto con su estado de soporte en cuanto se publiquen.
 
-**Note:** RestroLogic is currently under development. All future releases will be listed here with their security support status.
+| Versión         | ¿Soportada?        |
+|-----------------|--------------------|
+| En desarrollo   | :white_check_mark: |
+| < 1.0.0         | :x:                |
 
-## Reporting a Vulnerability
+**Nota:** Aún no existen versiones estables oficialmente liberadas.
 
-If you discover a security vulnerability in RestroLogic, **please do not create a public issue**. Instead, report it directly to the maintainer via email at ldacuna83@gmail.com. Provide as much detail as possible, including steps to reproduce the issue and the potential impact.
+## Reporte de Vulnerabilidades
 
-**Response Process:**
-- You will receive an initial reply within 48 hours acknowledging your report.
-- Further details and timelines for the fix will be discussed directly via email.
-- If the vulnerability is confirmed, a fix will be developed as soon as possible and credited appropriately (if you wish).
+Si descubres alguna vulnerabilidad o problema de seguridad en RestroLogic, **por favor no crees un issue público**.  
+En su lugar, repórtalo de forma privada enviando un correo a ldacuna83@gmail.com. Describe el problema con el mayor nivel de detalle posible (cómo reproducirlo, posibles riesgos, etc.).
 
-## Disclosure Policy
+**¿Qué puedes esperar?**
+- Una respuesta inicial en un plazo máximo de 48 horas.
+- Comunicación directa para coordinar la solución.
+- Si la vulnerabilidad es confirmada, se trabajará en una corrección lo antes posible.
 
-We ask that you give us a reasonable amount of time to resolve the issue before any public disclosure. Responsible disclosure helps keep all users safe.
+## Política de Divulgación Responsable
 
-## Security Best Practices
+Te pedimos un tiempo prudente para solucionar cualquier problema reportado antes de hacer pública la vulnerabilidad. Así protegemos a todos los usuarios.
 
-- Always keep your installation updated to the latest supported version.
-- Report suspicious behavior or vulnerabilities promptly.
-- Avoid sharing sensitive data in public forums or issues.
+## Buenas Prácticas de Seguridad
 
-Thank you for helping us make RestroLogic more secure!
+- Mantén siempre tu instalación actualizada a la última versión disponible.
+- Reporta cualquier comportamiento sospechoso o vulnerabilidad de inmediato.
+- Evita compartir información sensible en foros o canales públicos.
+
+¡Gracias por contribuir a la seguridad de RestroLogic!
