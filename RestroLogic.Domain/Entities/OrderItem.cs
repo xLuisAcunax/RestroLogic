@@ -4,6 +4,7 @@ namespace RestroLogic.Domain.Entities
 {
     public class OrderItem
     {
+        public Guid Id { get; set; }
         public Guid ProductId { get; private set; }
         public string ProductName { get; private set; }
         public int Quantity { get; private set; }
