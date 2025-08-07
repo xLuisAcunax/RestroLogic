@@ -1,6 +1,4 @@
-﻿using RestroLogic.Domain.ValueObjects;
-
-namespace RestroLogic.Application.Dtos
+﻿namespace RestroLogic.Application.Dtos
 {
     public class OrderDto
     {
