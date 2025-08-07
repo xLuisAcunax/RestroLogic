@@ -26,9 +26,9 @@ namespace RestroLogic.Domain.Entities
                 existing.IncreaseQuantity(quantity);
         }
 
-        public Money GetTotal()
+        public decimal GetTotal()
         {
-            Money total = new Money(0, "COP");
+            var total = 0M;
             foreach (var item in _items)
                 total += item.SubTotal;
             return total;

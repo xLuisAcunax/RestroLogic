@@ -7,8 +7,8 @@ namespace RestroLogic.Domain.Entities
         public Guid ProductId { get; private set; }
         public string ProductName { get; private set; }
         public int Quantity { get; private set; }
-        public Money UnitPrice { get; private set; }
-        public Money SubTotal => new Money(UnitPrice.Amount * Quantity, UnitPrice.Currency);
+        public decimal UnitPrice { get; private set; }
+        public decimal SubTotal => UnitPrice * Quantity;
 
         protected OrderItem() { }
 

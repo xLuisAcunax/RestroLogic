@@ -1,4 +1,4 @@
-﻿namespace RestroLogic.Application
+﻿namespace RestroLogic.Application.Services
 {
     public class CreateOrderService
     {
