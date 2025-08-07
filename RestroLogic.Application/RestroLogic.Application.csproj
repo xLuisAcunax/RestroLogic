@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RestroLogic.Domain\RestroLogic.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
