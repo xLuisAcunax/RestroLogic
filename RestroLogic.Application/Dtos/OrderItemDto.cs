@@ -11,10 +11,10 @@ namespace RestroLogic.Application.Dtos
         [Required]
         public string ProductName { get; set; } = string.Empty;
 
-        public string ProductDescription { get; set; }
+        public string ProductDescription { get; set; } = string.Empty;
 
         [Range(0, int.MaxValue)]
-        public Money UnitPrice { get; set; } = new Money(0);
+        public decimal UnitPrice { get; set; }
 
         [Range(0, int.MaxValue)]
         public int Quantity { get; set; }

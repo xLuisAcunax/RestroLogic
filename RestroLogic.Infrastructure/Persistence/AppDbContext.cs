@@ -13,10 +13,10 @@ namespace RestroLogic.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().OwnsOne(p => p.Price);
+            modelBuilder.Entity<Product>();
             modelBuilder.Entity<Order>().OwnsMany(o => o.Items, items =>
             {
-                modelBuilder.Entity<OrderItem>().OwnsOne(i => i.UnitPrice);
+                modelBuilder.Entity<OrderItem>();
             });
         }
     }
