@@ -9,10 +9,10 @@ namespace RestroLogic.Infrastructure.Persistence
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            // Busca el archivo de configuración en el proyecto WebApi
+            // Carga el archivo de configuración del proyecto WebApi mediante una ruta relativa
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(@"C:\Users\luis_\source\repos\RestroLogic\RestroLogic.WebApi\appsettings.json")
+                .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "RestroLogic.WebApi", "appsettings.json"))
                 .Build();
 
             var builder = new DbContextOptionsBuilder<AppDbContext>();
