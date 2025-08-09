@@ -1,25 +1,54 @@
-﻿using RestroLogic.Domain.ValueObjects;
-
-namespace RestroLogic.Domain.Entities
+﻿namespace RestroLogic.Domain.Entities
 {
     public class Product
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public decimal Price { get; private set; }
-        public bool IsAvaiable { get; private set; } = true;
 
-        protected Product() { }
+        public string Name { get; private set; } = string.Empty;
+        public string Description { get; private set; } = string.Empty;
+        public decimal Price { get; private set; }
+        public bool IsAvailable { get; private set; } = true;
+
+        protected Product() { } 
 
         public Product(string name, string description, decimal price)
         {
-            Name = name;
-            Description = description;
-            Price = price;
+            Rename(name);
+            ChangeDescription(description);
+            ChangePrice(price);
+            IsAvailable = true;
         }
 
-        public void MarkAsUnavailable() => IsAvaiable = false;
-        public void MaskAsAvailable() => IsAvaiable = true;
+        // --- Comportamiento de dominio ---
+        public void Rename(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name is required.", nameof(name));
+            if (name.Length > 120)
+                throw new ArgumentException("Name max length is 120.", nameof(name));
+
+            Name = name.Trim();
+        }
+
+        public void ChangeDescription(string? description)
+        {
+            description ??= string.Empty;
+            if (description.Length > 500)
+                throw new ArgumentException("Description max length is 500.", nameof(description));
+
+            Description = description.Trim();
+        }
+
+        public void ChangePrice(decimal price)
+        {
+            if (price <= 0)
+                throw new ArgumentException("Price must be greater than zero.", nameof(price));
+
+            // Si quisieras redondeo/control de escala:
+            Price = decimal.Round(price, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public void MarkAsUnavailable() => IsAvailable = false;
+        public void MarkAsAvailable() => IsAvailable = true;
     }
 }

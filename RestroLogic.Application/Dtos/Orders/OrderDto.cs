@@ -1,4 +1,4 @@
-﻿namespace RestroLogic.Application.Dtos
+﻿namespace RestroLogic.Application.Dtos.Orders
 {
     public class OrderDto
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36301.6 d17.14
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestroLogic.Domain", "RestroLogic.Domain\RestroLogic.Domain.csproj", "{D32A5C20-1F5D-431A-ABA3-E11A4024904F}"
 EndProject
@@ -31,15 +31,15 @@ Global
 		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A579A0F5-BBDC-4E90-AE5C-F6C0CE600E24}.Release|Any CPU.Build.0 = Release|Any CPU
-                {B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-                {B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-                {B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-                {B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.Build.0 = Release|Any CPU
-                {A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-                {A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-                {A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-                {A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Release|Any CPU.Build.0 = Release|Any CPU
-        EndGlobalSection
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93B7364-DC75-417A-B780-13D7D60F98FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5520426-EAB1-4CAA-B6BB-DE29B1A9F1F2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
