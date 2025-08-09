@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestroLogic.Application.Dtos
+namespace RestroLogic.Application.Dtos.Orders
 {
-    public class CreateOrderDto
+    public class UpdateOrderDto
     {
         [Required]
-        public Guid CustomerId { get; set; }
+        public Guid CustomerId {  get; set; }
 
         [MinLength(1)]
         public List<OrderItemDto> Items { get; set; } = [];
