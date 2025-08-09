@@ -14,5 +14,7 @@ namespace RestroLogic.Application.Dtos.Products
         public decimal Price { get; set; }
 
         public bool IsAvailable { get; set; }
+
+        public string? ImageUrl { get; set; } = null;
     }
 }
