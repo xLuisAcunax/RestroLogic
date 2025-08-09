@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using RestroLogic.Application.Interfaces;
-using RestroLogic.Application.Services;
+using RestroLogic.Application.Services.Orders;
+using RestroLogic.Application.Services.Products;
 using RestroLogic.Domain.Interfaces;
 using RestroLogic.Infrastructure.Persistence;
 using RestroLogic.Infrastructure.Repositories;
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Repositorios y servicios
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Controllers y Swagger/OpenAPI
 builder.Services.AddControllers();

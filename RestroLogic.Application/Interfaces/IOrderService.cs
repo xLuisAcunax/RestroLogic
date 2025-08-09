@@ -1,4 +1,4 @@
-﻿using RestroLogic.Application.Dtos;
+﻿using RestroLogic.Application.Dtos.Orders;
 
 namespace RestroLogic.Application.Interfaces
 {
