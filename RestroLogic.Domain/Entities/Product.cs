@@ -8,6 +8,7 @@
         public string Description { get; private set; } = string.Empty;
         public decimal Price { get; private set; }
         public bool IsAvailable { get; private set; } = true;
+        public string? ImageUrl { get; private set; } = null;
 
         protected Product() { } 
 
@@ -44,8 +45,22 @@
             if (price <= 0)
                 throw new ArgumentException("Price must be greater than zero.", nameof(price));
 
-            // Si quisieras redondeo/control de escala:
             Price = decimal.Round(price, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public void SetImageUrl(string? imageUrl)
+        {
+            if (!string.IsNullOrWhiteSpace(imageUrl))
+            {
+                if (!Uri.TryCreate(imageUrl, UriKind.Absolute, out _))
+                    throw new ArgumentException("Invalid image URL.", nameof(imageUrl));
+
+                ImageUrl = imageUrl.Trim();
+            }
+            else
+            {
+                ImageUrl = null;
+            }
         }
 
         public void MarkAsUnavailable() => IsAvailable = false;
