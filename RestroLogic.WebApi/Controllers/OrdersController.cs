@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestroLogic.Application.Dtos;
+using RestroLogic.Application.Dtos.Orders;
 using RestroLogic.Application.Interfaces;
 
 namespace RestroLogic.WebApi.Controllers
