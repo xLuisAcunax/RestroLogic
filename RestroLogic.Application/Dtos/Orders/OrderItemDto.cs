@@ -1,7 +1,7 @@
 ﻿using RestroLogic.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 
-namespace RestroLogic.Application.Dtos
+namespace RestroLogic.Application.Dtos.Orders
 {
     public class OrderItemDto
     {
