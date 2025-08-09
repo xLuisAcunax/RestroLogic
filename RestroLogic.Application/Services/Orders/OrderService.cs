@@ -1,9 +1,9 @@
-﻿using RestroLogic.Application.Dtos;
+﻿using RestroLogic.Application.Dtos.Orders;
 using RestroLogic.Application.Interfaces;
 using RestroLogic.Domain.Entities;
 using RestroLogic.Domain.Interfaces;
 
-namespace RestroLogic.Application.Services
+namespace RestroLogic.Application.Services.Orders
 {
     public class OrderService : IOrderService
     {
