@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using RestroLogic.Application.Dtos.Products;
 using RestroLogic.Application.Interfaces;
+using RestroLogic.Domain.Interfaces;
+using RestroLogic.Infrastructure.Interfaces;
 
 namespace RestroLogic.WebApi.Controllers
 {
@@ -63,6 +65,36 @@ namespace RestroLogic.WebApi.Controllers
         {
             var ok = await _service.DeleteAsync(id, ct);
             return ok ? NoContent() : NotFound();
+        }
+
+        [HttpPost("{id:guid}/image")]
+        public async Task<IActionResult> UploadImage(Guid id, IFormFile file,
+            [FromServices] IImageStorage storage,
+            [FromServices] IProductRepository productRepo,
+            CancellationToken ct)
+        {
+            if (file == null || file.Length == 0) return BadRequest("Empty file.");
+            var allowed = new[] { "image/jpeg", "image/png", "image/webp" };
+            if (!allowed.Contains(file.ContentType)) return BadRequest("Unsupported content type.");
+
+            // Tamaño máximo: 5MB
+            const long maxSize = 5 * 1024 * 1024;
+            if (file.Length > maxSize) return BadRequest("File too large (max 5MB).");
+
+            var product = await productRepo.GetByIdAsync(id, ct);
+            if (product is null) return NotFound();
+
+            // Nombre único y “carpeta” por producto
+            var ext = Path.GetExtension(file.FileName);
+            var objectKey = $"products/{id}/{Guid.NewGuid()}{ext}";
+
+            await using var stream = file.OpenReadStream();
+            var url = await storage.UploadAsync(stream, file.ContentType, objectKey, ct);
+
+            product.SetImageUrl(url);
+            await productRepo.UpdateAsync(product, ct);
+
+            return Ok(new { imageUrl = url });
         }
     }
 }
