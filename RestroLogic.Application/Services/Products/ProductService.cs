@@ -50,6 +50,7 @@ namespace RestroLogic.Application.Services.Products
             if (dto.Price <= 0) throw new ArgumentException("Price must be greater than zero.");
 
             var product = new Product(dto.Name, dto.Description ?? string.Empty, dto.Price);
+            product.SetImageUrl(dto.ImageUrl); 
             await _productRepository.AddAsync(product, ct);
             return product.Id;
         }
@@ -62,6 +63,7 @@ namespace RestroLogic.Application.Services.Products
             p.Rename(dto.Name);
             p.ChangeDescription(dto.Description);
             p.ChangePrice(dto.Price);
+            p.SetImageUrl(dto.ImageUrl);
             if (dto.IsAvailable) p.MarkAsAvailable(); else p.MarkAsUnavailable();
 
             await _productRepository.UpdateAsync(p, ct);
