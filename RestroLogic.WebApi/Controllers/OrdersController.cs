@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestroLogic.Application.Common.Pagination;
 using RestroLogic.Application.Dtos.Orders;
 using RestroLogic.Application.Interfaces;
 
@@ -66,6 +67,13 @@ namespace RestroLogic.WebApi.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<PagedResult<OrderDto>>> Search([FromQuery] OrderQueryParams qp, CancellationToken ct)
+        {
+            var result = await _orderService.SearchAsync(qp, ct);
+            return Ok(result);
         }
     }
 }

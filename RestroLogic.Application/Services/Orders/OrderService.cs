@@ -1,4 +1,5 @@
-﻿using RestroLogic.Application.Dtos.Orders;
+﻿using RestroLogic.Application.Common.Pagination;
+using RestroLogic.Application.Dtos.Orders;
 using RestroLogic.Application.Interfaces;
 using RestroLogic.Domain.Entities;
 using RestroLogic.Domain.Interfaces;
@@ -84,6 +85,25 @@ namespace RestroLogic.Application.Services.Orders
                     UnitPrice = i.UnitPrice,
                     Quantity = i.Quantity
                 }).ToList()
+            };
+        }
+
+        public async Task<PagedResult<OrderDto>> SearchAsync(OrderQueryParams qp, CancellationToken ct = default)
+        {
+            var (orders, total) = await _repository.SearchAsync(
+                qp.CustomerId, qp.From, qp.To,
+                qp.SortBy, string.Equals(qp.SortDir, "desc", StringComparison.OrdinalIgnoreCase),
+                qp.Page <= 0 ? 1 : qp.Page,
+                qp.PageSize <= 0 ? 20 : qp.PageSize,
+                ct);
+
+            var dtos = orders.Select(MapToDto);
+            return new PagedResult<OrderDto>
+            {
+                Items = dtos,
+                Total = total,
+                Page = qp.Page,
+                PageSize = qp.PageSize
             };
         }
     }

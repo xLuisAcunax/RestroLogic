@@ -1,4 +1,5 @@
-﻿using RestroLogic.Application.Dtos.Products;
+﻿using RestroLogic.Application.Common.Pagination;
+using RestroLogic.Application.Dtos.Products;
 
 namespace RestroLogic.Application.Interfaces
 {
@@ -10,5 +11,6 @@ namespace RestroLogic.Application.Interfaces
         Task<bool> UpdateAsync(Guid id, UpdateProductDto dto, CancellationToken ct = default);
         Task<bool> UpdateAvailabilityAsync(Guid id, bool isAvailable, CancellationToken ct = default);
         Task<bool> DeleteAsync(Guid id, CancellationToken ct = default);
+        Task<PagedResult<ProductListItemDto>> SearchAsync(ProductQueryParams qp, CancellationToken ct = default);
     }
 }
