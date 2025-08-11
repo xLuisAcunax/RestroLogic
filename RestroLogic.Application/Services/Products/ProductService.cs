@@ -1,4 +1,5 @@
-﻿using RestroLogic.Application.Dtos.Products;
+﻿using RestroLogic.Application.Common.Pagination;
+using RestroLogic.Application.Dtos.Products;
 using RestroLogic.Application.Interfaces;
 using RestroLogic.Domain.Entities;
 using RestroLogic.Domain.Interfaces;
@@ -87,6 +88,35 @@ namespace RestroLogic.Application.Services.Products
 
             await _productRepository.DeleteByIdAsync(id, ct); 
             return true;
+        }
+
+        public async Task<PagedResult<ProductListItemDto>> SearchAsync(ProductQueryParams qp, CancellationToken ct = default)
+        {
+            var (items, total) = await _productRepository.SearchAsync(
+                search: qp.Search,
+                onlyAvailable: qp.OnlyAvailable,
+                sortBy: qp.SortBy,
+                desc: string.Equals(qp.SortDir, "desc", StringComparison.OrdinalIgnoreCase),
+                page: qp.Page <= 0 ? 1 : qp.Page,
+                pageSize: qp.PageSize <= 0 ? 20 : qp.PageSize,
+                ct);
+
+            var mapped = items.Select(p => new ProductListItemDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                IsAvailable = p.IsAvailable,
+                ImageUrl = p.ImageUrl
+            });
+
+            return new PagedResult<ProductListItemDto>
+            {
+                Items = mapped,
+                Total = total,
+                Page = qp.Page,
+                PageSize = qp.PageSize
+            };
         }
     }
 }

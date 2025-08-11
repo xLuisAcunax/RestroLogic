@@ -1,4 +1,5 @@
-﻿using RestroLogic.Application.Dtos.Orders;
+﻿using RestroLogic.Application.Common.Pagination;
+using RestroLogic.Application.Dtos.Orders;
 
 namespace RestroLogic.Application.Interfaces
 {
@@ -9,5 +10,6 @@ namespace RestroLogic.Application.Interfaces
         Task<Guid> CreateAsync(CreateOrderDto dto);
         Task<bool> UpdateAsync(Guid id, UpdateOrderDto dto);
         Task<bool> DeleteAsync(Guid id);
+        Task<PagedResult<OrderDto>> SearchAsync(OrderQueryParams qp, CancellationToken ct = default);
     }
 }
