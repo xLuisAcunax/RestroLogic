@@ -50,5 +50,39 @@ namespace RestroLogic.Infrastructure.Repositories
             _context.Orders.Update(order);
             await _context.SaveChangesAsync(cancellationToken);
         }
+
+        public async Task<(IEnumerable<Order> Items, int Total)> SearchAsync(
+        Guid? customerId, DateTime? from, DateTime? to,
+        string? sortBy, bool desc, int page, int pageSize, CancellationToken ct = default)
+        {
+            var q = _context.Orders
+                       .Include(o => o.Items)
+                       .AsNoTracking()
+                       .AsQueryable();
+
+            if (customerId.HasValue)
+                q = q.Where(o => o.CustomerId == customerId.Value);
+
+            if (from.HasValue)
+                q = q.Where(o => o.CreatedAt >= from.Value);
+
+            if (to.HasValue)
+                q = q.Where(o => o.CreatedAt <= to.Value);
+
+            sortBy = (sortBy ?? "date").ToLowerInvariant();
+            var isDesc = desc;
+
+            q = sortBy switch
+            {
+                "id" => isDesc ? q.OrderByDescending(o => o.Id) : q.OrderBy(o => o.Id),
+                _ => isDesc ? q.OrderByDescending(o => o.CreatedAt) : q.OrderBy(o => o.CreatedAt),
+            };
+
+            var total = await q.CountAsync(ct);
+            var skip = (Math.Max(1, page) - 1) * Math.Max(1, pageSize);
+            var items = await q.Skip(skip).Take(pageSize).ToListAsync(ct);
+
+            return (items, total);
+        }
     }
 }

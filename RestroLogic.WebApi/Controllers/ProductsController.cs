@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RestroLogic.Application.Common.Pagination;
 using RestroLogic.Application.Dtos.Products;
 using RestroLogic.Application.Interfaces;
 using RestroLogic.Domain.Interfaces;
@@ -36,6 +38,7 @@ namespace RestroLogic.WebApi.Controllers
         }
 
         // POST: api/products
+        [Authorize(Policy = "AdminOnly")]
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateProductDto dto, CancellationToken ct = default)
         {
@@ -44,6 +47,7 @@ namespace RestroLogic.WebApi.Controllers
         }
 
         // PUT: api/products/{id}
+        [Authorize(Policy = "AdminOnly")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductDto dto, CancellationToken ct = default)
         {
@@ -60,6 +64,7 @@ namespace RestroLogic.WebApi.Controllers
         }
 
         // DELETE: api/products/{id}
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id, CancellationToken ct = default)
         {
@@ -95,6 +100,13 @@ namespace RestroLogic.WebApi.Controllers
             await productRepo.UpdateAsync(product, ct);
 
             return Ok(new { imageUrl = url });
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<PagedResult<ProductListItemDto>>> Search([FromQuery] ProductQueryParams qp, CancellationToken ct)
+        {
+            var result = await _service.SearchAsync(qp, ct);
+            return Ok(result);
         }
     }
 }

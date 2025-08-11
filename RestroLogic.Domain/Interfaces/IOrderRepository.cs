@@ -10,5 +10,14 @@ namespace RestroLogic.Domain.Interfaces
         Task AddAsync(Order order, CancellationToken cancellationToken = default);
         Task UpdateAsync(Order order, CancellationToken cancellationToken = default);
         Task DeleteAsync(Order order, CancellationToken cancellationToken = default);
+        Task<(IEnumerable<Order> Items, int Total)> SearchAsync(
+        Guid? customerId,
+        DateTime? from,
+        DateTime? to,
+        string? sortBy,
+        bool desc,
+        int page,
+        int pageSize,
+        CancellationToken ct = default);
     }
 }
