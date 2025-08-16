@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Interfaces\**" />
+    <Compile Remove="Validations\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Validations\**" />
+    <None Remove="Interfaces\**" />
+    <None Remove="Validations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RestroLogic.Domain\RestroLogic.Domain.csproj" />
     <ProjectReference Include="..\RestroLogic.Infrastructure\RestroLogic.Infrastructure.csproj" />
   </ItemGroup>
@@ -20,8 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Validations\" />
+    <Folder Include="Tables\Commands\" />
+    <Folder Include="Tables\Dtos\" />
+    <Folder Include="Tables\Handlers\" />
+    <Folder Include="Tables\Queries\" />
   </ItemGroup>
 
 </Project>
