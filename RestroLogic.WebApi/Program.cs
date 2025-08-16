@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RestroLogic.Domain.Exceptions;
 using RestroLogic.Infrastructure.Persistence;
 using Serilog;
+using RestroLogic.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // MediatR
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly)); // o typeof(CreateOrderCommand).Assembly
+    cfg.RegisterServicesFromAssembly(ApplicationAssembly.Value));
 
 // FluentValidation
-builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly); // o Assembly de Application
+builder.Services.AddValidatorsFromAssembly(ApplicationAssembly.Value);
 
 // ProblemDetails
 builder.Services.AddProblemDetails(opts =>
