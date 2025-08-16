@@ -1,35 +1,38 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestroLogic.Domain.Entities;
+using RestroLogic.Domain.Sales;
 
 namespace RestroLogic.Infrastructure.Persistence
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Customer> Customers => Set<Customer>();
-        public DbSet<Product> Products => Set<Product>();
         public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderItem> OrderItems => Set<OrderItem>();
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>(); 
-            modelBuilder.Entity<OrderItem>();
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Customer>(customer =>
+
+            modelBuilder.Entity<Order>(e =>
             {
-                customer.OwnsOne(c => c.Email, email =>
+                e.HasKey(o => o.Id);
+                e.Property(o => o.TableNumber).IsRequired();
+                e.OwnsMany(o => o.Items, items =>
                 {
-                    email.Property(e => e.Value);
+                    items.WithOwner().HasForeignKey(i => i.OrderId);
+                    items.Property(i => i.MenuItemName).HasMaxLength(200);
+                    items.OwnsOne(i => i.UnitPrice, m =>
+                    {
+                        m.Property(p => p.Amount).HasColumnType("decimal(18,2)");
+                        m.Property(p => p.Currency).HasMaxLength(3);
+                    });
+                    items.OwnsOne(i => i.Quantity, q =>
+                    {
+                        q.Property(p => p.Value).HasColumnName("Quantity");
+                    });
                 });
-            });
-
-            modelBuilder.Entity<Product>(b =>
-            {
-                b.HasKey(p => p.Id);
-                b.Property(p => p.Name).IsRequired().HasMaxLength(120);
-                b.Property(p => p.Description).HasMaxLength(500);
-                b.Property(p => p.Price).HasColumnType("decimal(18,2)");
             });
 
         }
