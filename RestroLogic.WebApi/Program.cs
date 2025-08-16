@@ -1,10 +1,14 @@
 using Hellang.Middleware.ProblemDetails;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RestroLogic.Application.Commands.Sales.AddItem;
+using RestroLogic.Application.Commands.Sales.CloseOrder;
 using RestroLogic.Application.Commands.Sales.CreateOrder;
+using RestroLogic.Application.Commands.Sales.GetOrders;
 using RestroLogic.Application.Common.Behaviors;
 using RestroLogic.Application.Common.Mapping;
 using RestroLogic.Infrastructure.Persistence;
+using RestroLogic.WebApi.Contracts;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -66,6 +70,32 @@ app.MapPost("/api/v1/orders", async (CreateOrderCommand cmd, IMediator mediator,
 {
     var result = await mediator.Send(cmd, ct);
     return result.IsSuccess ? Results.Created($"/api/v1/orders/{result.Value}", new { id = result.Value }) : Results.BadRequest(new { error = result.Error });
+});
+
+app.MapPost("/api/v1/orders/{id:guid}/items", async (Guid id, AddItemRequest req, IMediator mediator, CancellationToken ct) =>
+{
+    var cmd = new AddItemCommand(id, req.MenuItemId, req.MenuItemName, req.UnitPrice, req.Currency ?? "COP", req.Quantity);
+    var result = await mediator.Send(cmd, ct);
+    return result.IsSuccess ? Results.Ok(result.Value) : Results.BadRequest(new { error = result.Error });
+});
+
+
+app.MapPost("/api/v1/orders/{id:guid}/close", async (Guid id, IMediator mediator, CancellationToken ct) =>
+{
+    var result = await mediator.Send(new CloseOrderCommand(id), ct);
+    return result.IsSuccess ? Results.Ok(new { total = result.Value }) : Results.BadRequest(new { error = result.Error });
+});
+
+
+app.MapGet("/api/v1/orders", async (string? status, int page, int pageSize, IMediator mediator, HttpResponse http, CancellationToken ct) =>
+{
+    var res = await mediator.Send(new GetOrdersQuery(status, page == 0 ? 1 : page, pageSize == 0 ? 20 : pageSize), ct);
+    if (!res.IsSuccess) return Results.BadRequest(new { error = res.Error });
+
+
+    var meta = new { res.Value.Page, res.Value.PageSize, res.Value.TotalCount, res.Value.TotalPages };
+    http.Headers["X-Pagination"] = System.Text.Json.JsonSerializer.Serialize(meta);
+    return Results.Ok(res.Value);
 });
 
 // Seed DB at startup

@@ -14,7 +14,6 @@ namespace RestroLogic.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-
             modelBuilder.Entity<Order>(e =>
             {
                 e.HasKey(o => o.Id);
@@ -34,6 +33,9 @@ namespace RestroLogic.Infrastructure.Persistence
                     });
                 });
             });
+
+            modelBuilder.Entity<Order>().Navigation(nameof(Order.Items))
+                .UsePropertyAccessMode(PropertyAccessMode.Field);
 
         }
     }
