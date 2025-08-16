@@ -9,8 +9,10 @@ namespace RestroLogic.Domain.Entities
         public DateTime OpenedAt { get; private set; } = DateTime.UtcNow;
         public DateTime? ClosedAt { get; private set; }
         public string Status { get; private set; } = "Open";
+
         private readonly List<OrderItem> _items = new();
         public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+
         public decimal Total { get; private set; }
 
         private Order() { }
