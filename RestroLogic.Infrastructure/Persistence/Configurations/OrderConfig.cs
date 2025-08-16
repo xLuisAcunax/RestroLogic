@@ -9,10 +9,19 @@ namespace RestroLogic.Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Order> b)
         {
             b.HasKey(x => x.Id);
+
             b.Property(x => x.Status).IsRequired().HasMaxLength(20);
             b.Property(x => x.Total).HasPrecision(18, 2);
-            b.HasOne<Table>().WithMany().HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
-            b.Navigation("_items").UsePropertyAccessMode(PropertyAccessMode.Field);
+
+            // Relación principal: Order -> OrderItem
+            b.HasMany(o => o.Items)
+             .WithOne()
+             .HasForeignKey(i => i.OrderId)
+             .OnDelete(DeleteBehavior.Cascade);
+
+            // Si quieres forzar el backing field, hazlo SOBRE la navegación "Items"
+            b.Metadata.FindNavigation(nameof(Order.Items))!
+                      .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }
